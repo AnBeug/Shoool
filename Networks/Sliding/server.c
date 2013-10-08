@@ -3,9 +3,6 @@
  * Author       : Annie Beug                 *
  * Date			: 28-FEB-2010                *
  * Modified     : 08-MAR-2010                *
- * Project      : Assignment 4               *
- * Class        : CPE 464                    *
- * Professor    : Dr. Smith                  *
  *********************************************/
 
 #include "networks.h"

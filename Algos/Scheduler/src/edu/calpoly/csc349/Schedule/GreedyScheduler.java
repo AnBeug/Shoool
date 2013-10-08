@@ -5,61 +5,65 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * This class provides a greedy algorithm implementation to the Scheduler interface.
+ * This class provides a greedy algorithm implementation to the 
+ * Scheduler interface.
  * @author asbeug@calpoly.edu
  */
 public class GreedyScheduler implements Scheduler {
-
-	private static MyLogger myLogger = new MyLogger(MyLogger.INFO);
-
 	@Override
+	/**
+	 * Create a schedule using a greedy algorithm.
+	 * @param toCover - the time range to cover with employees
+	 * @return employees - the employees availabilities
+	 */
 	public TimeRange[] makeSchedule(TimeRange toCover, TimeRange[] employees) {
 		if (toCover == null) {
-			throw new IllegalArgumentException("The argument 'toCover' cannot be null.");
+			throw new IllegalArgumentException(
+				"The argument 'toCover' cannot be null.");
 		} else if (employees == null) {
-			throw new IllegalArgumentException("The argument 'employees' cannot be null.");
+			throw new IllegalArgumentException(
+				"The argument 'employees' cannot be null.");
 		}
-
-		myLogger.println("GreedyScheduler.makeSchedule():", MyLogger.DEBUG);
-		myLogger.println("\t toCover = " + toCover.toString(), MyLogger.DEBUG);
 
 		if (employees.length == 0) {
 			return null;			
 		}
 
 		ArrayList<TimeRange> scheduleList = new ArrayList<TimeRange>();
-
 		Arrays.sort(employees, new StartSpanComparator());
-
-		myLogger.println("\t employees (sorted) = ", MyLogger.DEBUG);
-		for (TimeRange empTimeRange: employees) {
-			myLogger.println("\t\t" + empTimeRange.toString(), MyLogger.DEBUG);
-		}
 
 		int currentEndTime = toCover.getStart();
 
 		// Evaluate each employee's schedule
 		for (TimeRange currentEmployee: employees) {
-			myLogger.println("\tEvaluating " + currentEmployee + "; currentEndTime = " + currentEndTime, MyLogger.DEBUG);
-
-			if (currentEmployee.getStart() <= currentEndTime && currentEmployee.getEnd() > currentEndTime) {
-				currentEndTime = currentEmployee.getEnd();
-				myLogger.println("\t\t* Using " + currentEmployee, MyLogger.DEBUG);
-				scheduleList.add(currentEmployee);
+			// Check to see if we're already done
+			if (scheduleList.size() > 0 
+					&& scheduleList.get(0).getStart() <= toCover.getStart() 
+					&& scheduleList.get(scheduleList.size()-1).getEnd() >= toCover.getEnd()) {
+				break;
+			}
+			
+			if (currentEmployee.getStart() <= currentEndTime) {
+				if (currentEmployee.getStart() <= toCover.getStart()  
+						&& scheduleList.size() > 0) {
+					if (currentEmployee.getEnd() >= scheduleList.get(0).getEnd()) {
+						scheduleList.set(0, currentEmployee);
+						currentEndTime = currentEmployee.getEnd();
+					}
+				} else if (currentEmployee.getEnd() > currentEndTime) {
+					scheduleList.add(currentEmployee);
+					currentEndTime = currentEmployee.getEnd();
+				}
 			}
 		}
 
-
-		myLogger.println("\t schedule = ", MyLogger.DEBUG);
-		if (scheduleList.size() > 0) {
-			for (TimeRange schedule: scheduleList) {
-				myLogger.println(schedule.toString(), MyLogger.DEBUG);
-			}
+		if (scheduleList.size() > 0 
+				&& scheduleList.get(scheduleList.size()-1).getEnd() 
+				>= toCover.getEnd()) {
+			return scheduleList.toArray(new TimeRange[] {});
 		} else {
-			myLogger.println("No solution found", MyLogger.DEBUG);
+			return null;
 		}
-
-		return scheduleList.toArray(new TimeRange[] {});
 	}
 
 	/**
@@ -68,17 +72,14 @@ public class GreedyScheduler implements Scheduler {
 	public class StartSpanComparator implements Comparator<TimeRange> {
 		@Override
 		public int compare(TimeRange o1, TimeRange o2) {
-			myLogger.println("** Comparing " + o1 + " to " + o2, MyLogger.VERBOSE);
-
 			if (o1.getStart() == o2.getStart()) {
 				int span1 = o1.getEnd() - o1.getStart();
 				int span2 = o2.getEnd() - o2.getStart();
-				myLogger.println("span 1 = " + span1 + "; span 2 = " + span2, MyLogger.VERBOSE);
-
 				return Integer.valueOf(span2).compareTo(Integer.valueOf(span1));
 			}
 
-			return Integer.valueOf(o1.getStart()).compareTo(Integer.valueOf(o2.getStart()));
+			return Integer.valueOf(o1.getStart()).compareTo(
+					Integer.valueOf(o2.getStart()));
 		}
 	}
 }

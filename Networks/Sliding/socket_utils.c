@@ -1,9 +1,6 @@
-/*********************************************
- * File         : socket_utils.c             *
- * Author       : Annie Beug                 *
- * Date         : 28-FEB-2010                *
- * Modified     : 08-MAR-2010                *
- *********************************************/
+/**
+ * 
+ */
 
 #include "networks.h"
 #include "debugger.h"

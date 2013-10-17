@@ -1,9 +1,6 @@
-/*********************************************
- * File			: networks.h                 *
- * Author		: Annie Beug                 *
- * Date			: 5-FEB-2010                 *
- * Modified		: 10-FEB-2010                *
- *********************************************/
+/**
+ * 
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -34,26 +31,11 @@
 #define INIT_SEQ_NUM		1
 #define FIRST_DATA_SEQ_NUM	2
 
-/* Client functions */
-int check_file(char * filename, FILE ** file_ptr);
-int send_handshake_packet(int sock_num, struct sockaddr_in * srv_addr);
-int send_init_packet(int sock_num, struct sockaddr_in * srv_addr, char * filename, int file_len);
-void send_file(int sock_num, struct sockaddr_in * srv_addr, FILE * file_ptr, unsigned int file_len, unsigned int buff_sz);
-void send_file_packet(int sock_num, unsigned int seq_num, struct sockaddr_in * srv_addr, char * send_buff, unsigned int buff_sz);
-int recv_ack(int sock_num, struct sockaddr_in * srv_addr);
-
-/* Server functions */
-int create_udp_srv_sock(int port);
-void connect_handshake(int sock_num);
-int send_ack(int sock_num, struct sockaddr_in * cli_addr, unsigned int seq_num);
-void * do_threading( void * ptr );
-
 /* Shared functions */
 int create_udp_sock();
 int select_call(int socket, int seconds, int useconds);
 int send_packet(int sock_num, char * send_buff, unsigned int send_len, struct sockaddr_in * sock_addr);
 void print_sockaddr_info(struct sockaddr_in sock_addr);
-
 
 /************************************************
  * Handshake Packet

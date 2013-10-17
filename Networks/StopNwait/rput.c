@@ -1,11 +1,9 @@
-/*********************************************
- * File			: rput.c                     *
- * Author		: Annie Beug                 *
- * Date			: 5-FEB-2010                 *
- * Modified		: 10-FEB-2010                *
- *********************************************/
+/**
+ *
+ */
 
 #include "networks.h"
+#include "rput.h"
 
 int main(int argc, char * argv[]) {
 	char *				local_file_name;

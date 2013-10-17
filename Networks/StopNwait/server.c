@@ -1,11 +1,9 @@
-/*********************************************
- * File			: server.c                   *
- * Author		: Annie Beug                 *
- * Date			: 5-FEB-2010                 *
- * Modified		: 10-FEB-2010                *
- *********************************************/
+/**
+ *
+ */
 
 #include "networks.h"
+#include "server.h"
 
 #define PORT_NUM 0
 

@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 /**
  * This class provides a greedy implementation to the Scheduler interface.
- * @author asbeug@calpoly.edu
+ * @author Annie Beug
  */
 public class GreedyScheduler implements Scheduler {
     @Override

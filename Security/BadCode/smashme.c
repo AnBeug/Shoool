@@ -1,3 +1,7 @@
+/**
+ *
+ **/
+
 #include "smashme.h"
 
 char MyStack[STACK_SZ];

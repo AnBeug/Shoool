@@ -1,3 +1,7 @@
+/**
+ *
+ **/
+
 #include "smashme.h"
 #include <string.h>
 

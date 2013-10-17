@@ -1,9 +1,7 @@
-/*********************************************
- * File         : networks.h                 *
- * Author       : Annie Beug                 *
- * Date         : 28-FEB-2010                *
- * Modified     : 07-MAR-2010                *
- *********************************************/
+/**
+ * This file defines constants and structures for 
+ * the sliding window server and client.
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -22,7 +20,7 @@
 #include "checksum.h"
 #include "sendtoErrG.h"
 
-/* Constants */
+/* Packet structure sizes. */
 #define HS_PKT_SZ           sizeof(handshake_pkt_t)
 #define INIT_HDR_SZ         sizeof(init_hdr_t)
 #define INIT_PKT_SZ         sizeof(init_pkt_t)
@@ -32,11 +30,13 @@
 #define DATA_PKT_SZ         sizeof(data_pkt_t)
 #define MAX_DATA_PKT_SZ     DATA_HDR_SZ + 1400
 
+/* File and buffer sizes. */
 #define MIN_FILENAME_SZ     1
 #define MAX_FILENAME_SZ     1000
 #define MIN_BUFFER_SZ       1
 #define MAX_BUFFER_SZ       1400
 
+/* Client and server wait times */
 #define CLI_WAIT_SECS       1
 #define MAX_CLI_RETRIES     10
 #define SRV_WAIT_SECS       11

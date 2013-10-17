@@ -28,18 +28,21 @@
 # else
     #define debut_print
 #endif
+
 // Print minimal amount
 #if _DEBUG_LEVEL >= DEBUG_MIN
     #define debug_min printf
 # else
     #define debug_min
 #endif
+
 // Print most things
 #if _DEBUG_LEVEL >= DEBUG_MEDIUM
     #define debug_medium printf
 #else
     #define debug_medium
 #endif
+
 // Print everything
 #if _DEBUG_LEVEL >= DEBUG_MAX
     #define debug_max printf
@@ -47,6 +50,7 @@
     #define debug_max
 #endif
 
+// Print errors
 #ifdef _DEBUG_ERRORS
     #define debug_errors printf
 #else

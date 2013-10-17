@@ -1,18 +1,32 @@
-// test cases
-// in the format #-#;#-#,#-#;#-#,#-#
-// where the first pair of numbers is the time range to cover
-// and the rest of the pairs BEFORE the semicolon are the schedules for the employees
-// and the pairs AFTER the semicolon are the solution
+// The following are test cases in the format 
+//      #-#;#-#,#-#;#-#,#-#
+// where the first pair of numbers (before the first semicolon) is the 
+// time range to cover. The next set of pairs between the first and second
+// semicolons are the schedules for the employees. The pairs after the 
+// final semicolon are the solution.
+// - A simple case with some overlap
 1-8;1-4,2-5,5-7,5-9;1-4,2-5,5-9
+// - No employees and therefore no solution
 1-3;;
+// - Gaps in employees' schedules and therefore no solution
 1-10;1-3,1-2,2-5,2-6,4-5,5-7;
+// - Gaps in the middle
 3-4;1-2,6-10;
+// - Gaps at the beginning
 3-4;6-7,6-10,7-8,7-9;
+// - Gaps at the end
 6-7;1-2,2-4,3-6;
+// - Employee's schedule is the same as the to-cover times
 1-2;1-2;1-2
+// - Overlapping employee schedules
 3-10;1-6,2-7,2-10,3-6;1-6,2-10
+// - One employee covers the whole block
 3-10;1-6,2-7,3-6,3-10;3-10
+// - Two employees cover the whole block
 3-10;1-6,2-7,3-6,7-10;2-7,7-10
+// - One employee covers the whole block, with another less optimal solution
 3-10;1-6,2-7,3-10,3-6,7-10;3-10
+// - One less optimal solution, appearing first in list
 1-10;1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9,9-10,2-4,4-8,7-10;1-2,2-4,4-8,7-10
+// - Multiple gaps
 1-10;1-2,3-4,5-6,7-8,9-10;

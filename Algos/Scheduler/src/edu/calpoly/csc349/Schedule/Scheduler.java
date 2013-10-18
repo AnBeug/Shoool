@@ -26,5 +26,5 @@ package edu.calpoly.csc349.Schedule;
 **/
 public interface Scheduler 
 {
-	public TimeRange[] makeSchedule(TimeRange toCover, TimeRange[] employees); 
+  public TimeRange[] makeSchedule(TimeRange toCover, TimeRange[] employees); 
 }

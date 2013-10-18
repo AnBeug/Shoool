@@ -1,7 +1,7 @@
 /**
- * This file defines constants and structures for 
- * the sliding window server and client.
- */
+ * This file contains constants, packet struct definitions and shared function
+ * prototypes. 
+ **/
 
 #include <stdlib.h>
 #include <stdio.h>

@@ -10,4 +10,4 @@ addresses:
 	nm smashme | egrep '(MyStack|Uncalled)'
 
 clean:
-	rm smashme configure
+	rm -rf smashme configure *.dSYM

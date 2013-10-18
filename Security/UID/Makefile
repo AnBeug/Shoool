@@ -1,9 +1,3 @@
-########################################
-# File           : Makefile            #
-# Author         : Annie Beug          #
-# Date           : 21-MAY-2010         #
-########################################
-
 all: 
 	gcc -o mksuid mksuid.c
 	

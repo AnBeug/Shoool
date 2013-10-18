@@ -1,6 +1,9 @@
 /**
- * 
- */
+ * This file contains the server.
+ * The server starts up and opens a UDP socket for listening to for
+ * incoming requests.
+ * @author asbeug
+ **/
 
 #include "networks.h"
 #include "debugger.h"

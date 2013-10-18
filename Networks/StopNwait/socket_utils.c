@@ -1,7 +1,7 @@
 /**
  * This file helper functions for network communications.
  * @auther asbeug
- */
+ **/
 
 #include "networks.h"
 
@@ -31,6 +31,7 @@ int create_udp_srv_sock(int port) {
     struct sockaddr_in local_addr;
     socklen_t sockaddr_len = sizeof(local_addr);
 
+    /* Setup and bind to socket */
     if ((sock_num = create_udp_sock()) < 0) {
         return sock_num;
     }
@@ -62,7 +63,6 @@ int create_udp_srv_sock(int port) {
  * Returns the number of bytes transfered.
  **/
 int send_packet(int sock_num, char * send_buff, unsigned int send_len, struct sockaddr_in * sock_addr) {
-    // TODO call sendtoErrG
     unsigned int sockaddr_len = sizeof(struct sockaddr);
     
     //print_sockaddr_info(*sock_addr);
@@ -73,8 +73,6 @@ int send_packet(int sock_num, char * send_buff, unsigned int send_len, struct so
     if (bytes_trfd < 0) {
         printf("socket_utils - send_packet() err: %s\n", strerror(errno));
     }
-    
-    //printf("socket_utils - send_packet() 2: bytes_trfd = %i\n", bytes_trfd);
     
     return bytes_trfd;
 }

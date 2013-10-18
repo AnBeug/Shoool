@@ -1,6 +1,7 @@
 /**
- * 
- */
+ * This file helper functions for network communications.
+ * @auther asbeug
+ **/
 
 #include "networks.h"
 #include "debugger.h"
@@ -18,8 +19,6 @@ int create_udp_sock() {
         return -1;
     }
 
-    ////debug_max("create_udp_sock(): sock_num = %i\n", sock_num);
-    
     return sock_num;
 }
 

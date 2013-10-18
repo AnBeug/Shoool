@@ -1,7 +1,12 @@
 /**
- *
- */
-
+ * This file contains the UDP client, 'rput', used for transferring 
+ * a file to a remote server.
+ * Run it without any command-line arguments to view usage information.
+ * It uses the sendtoErr* files to introduce dropped packets, simulating
+ * a flakey network which requires packets resent.
+ * @author asbeug
+ **/
+ 
 #include "networks.h"
 #include "debugger.h"
 #include "rput.h"

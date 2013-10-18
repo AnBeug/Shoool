@@ -1,7 +1,7 @@
 /**
  * This file contains function prototypes for rput.
  * @author asbeug
- */
+ **/
 
 int check_file(char * filename, FILE ** file_ptr);
 int send_handshake_packet(int sock_num, struct sockaddr_in * srv_addr);

@@ -1,9 +1,7 @@
-/*********************************************
- * File			: socket_utils.h             *
- * Author		: Annie Beug                 *
- * Date			: 5-FEB-2010                 *
- * Modified		: 14-FEB-2010                *
- *********************************************/
+/**
+ * This file helper functions for network communications.
+ * @auther asbeug
+ */
 
 #include "networks.h"
 
@@ -20,8 +18,6 @@ int create_udp_sock() {
 		return -1;
 	}
 
-	//printf("create_udp_sock() 1: sock_num = %i\n", sock_num);
-	
 	return sock_num;
 }
 
@@ -112,6 +108,5 @@ int select_call(int sock_num, int seconds, int useconds) {
  * Print out the socket address information.
  **/
 void print_sockaddr_info(struct sockaddr_in sock_addr) {
-	//printf("socket_utils - print_sockaddr_info() 1: sin_family = %d\n", sock_addr.sin_family);
 	printf("\tsin_addr = '%s'; sin_port = %d", inet_ntoa(sock_addr.sin_addr), ntohs(sock_addr.sin_port));
 }

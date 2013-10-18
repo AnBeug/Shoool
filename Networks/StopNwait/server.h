@@ -1,5 +1,6 @@
 /**
- *
+ * This file contains function prototypes for the server.
+ * @auther asbeug
  */
 
 int create_udp_srv_sock(int port);

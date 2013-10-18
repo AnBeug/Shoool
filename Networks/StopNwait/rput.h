@@ -1,5 +1,6 @@
 /**
- *
+ * This file contains function prototypes for rput.
+ * @author asbeug
  */
 
 int check_file(char * filename, FILE ** file_ptr);

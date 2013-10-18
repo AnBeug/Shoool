@@ -1,6 +1,7 @@
 /**
  * This file contains constants, packet struct definitions and shared function
  * prototypes. 
+ * @author asbeug
  **/
 
 #include <stdlib.h>

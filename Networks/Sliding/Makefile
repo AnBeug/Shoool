@@ -21,7 +21,6 @@ $(DIR)rput: rput.c socket_utils.c sendtoErrG.c networks.h debugger.h rput.h
 $(DIR)server: server.c socket_utils.c sendtoErrG.c networks.h debugger.h server.h
 	$(CC) $(CFLAGS) -o $(DIR)server server.c socket_utils.c sendtoErrG.c checksum.c $(LIBS)
 
-# clean targets for Solaris and Linux
 clean:
-	-rm rput server
+	rm -rf rput server *.dSYM
 

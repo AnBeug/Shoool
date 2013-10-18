@@ -1,13 +1,3 @@
-##############################################
-# File			: Makefile                   #
-# Author		: Annie Beug                 #
-# Date			: 5-FEB-2010                 #
-# Modified		: 10-FEB-2010                #
-# Project		: Assignment 3               #
-# Class			: CSC 464                    #
-# Professor     : Dr. Smith                  #
-##############################################
-
 CC = gcc
 CFLAGS = -g -Wall
 #LIBS = -lm -lpthread
@@ -32,7 +22,5 @@ $(DIR)rput: rput.c socket_utils.c sendtoErrG.c networks.h
 $(DIR)server: server.c socket_utils.c sendtoErrG.c networks.h
 	$(CC) $(CFLAGS) -o $(DIR)server server.c socket_utils.c sendtoErrG.c checksum.c $(LIBS)
 
-# clean targets for Solaris and Linux
 clean:
-	-rm rput server
-
+	rm -rf rput server *.dSYM

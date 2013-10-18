@@ -6,7 +6,7 @@
 
 /*created H version -  modified to use RSEED in sendErrH_init
                        also changed to use thread safe drand48_r on linux
-		       HMS - Oct, 2008  */
+           HMS - Oct, 2008  */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,9 +43,9 @@ int sendErrH(int s, void *msg, int len,  unsigned  int flags)
 
     if (start_flag_ == 0)
       {
-	printf("Must call sendErrH_init(...) before using sendErrH(...) \n");
-	printf("Plesae fix your code and try again.\n");
-	exit(-1);
+  printf("Must call sendErrH_init(...) before using sendErrH(...) \n");
+  printf("Plesae fix your code and try again.\n");
+  exit(-1);
       }
     
     /*NOTE if your program segfaults on the following mallco()... the problem is in
@@ -54,9 +54,9 @@ int sendErrH(int s, void *msg, int len,  unsigned  int flags)
     new_msg = (unsigned char *) malloc(len);
     if (new_msg < 0)
       {
-	printf("malloc() failed in sendErrH(..) the problem is in your code not mine, it just shows up here, len: %d\n", len);
-	perror("sendErrH malloc");
-	exit(-1);
+  printf("malloc() failed in sendErrH(..) the problem is in your code not mine, it just shows up here, len: %d\n", len);
+  perror("sendErrH malloc");
+  exit(-1);
       }
     
     memcpy(new_msg, msg, len);
@@ -66,8 +66,8 @@ int sendErrH(int s, void *msg, int len,  unsigned  int flags)
     /* if error == 1 then drop the packet else send it */
     if (error == 1)
     {
-	free(new_msg);
-	return (len);
+  free(new_msg);
+  return (len);
     }
     
     send_len = send(s,  new_msg, len, flags);
@@ -143,11 +143,11 @@ static int create_error(unsigned char *msg, int len)
     
     if (len > 3)
       {
-	memcpy(&temp, msg, 4);
-	packet_num = ntohl(temp);
+  memcpy(&temp, msg, 4);
+  packet_num = ntohl(temp);
       } else
-	{
-	  packet_num = 0;
+  {
+    packet_num = 0;
         }
      
     /* now see if we should do anything at all */
@@ -159,29 +159,29 @@ static int create_error(unsigned char *msg, int len)
 
     if (error_rate_ < check_error || (!drop_ && !flip_))
       {
-	if (debug_)
-	  printf("Packet %d: sent without errors\n", packet_num);
-	
-	return(0);
+  if (debug_)
+    printf("Packet %d: sent without errors\n", packet_num);
+  
+  return(0);
       } else
       {
-	
-	/* if we are here then we should be doing some type of error  */
-	
-	if (drop_ && flip_)
-	  return(drop_and_flips(msg, len, packet_num));
-	
-	if (drop_)
-	  {
-	    if (debug_) printf("Packet %d: Dropped (did not send)\n", packet_num);
-	    return(1);
-	}
-	
-	if (flip_)
-	  return(flip_a_byte(msg, len, packet_num));
-	
-	printf("hmm should not have gotten here!!!\n");
-	return 0;
+  
+  /* if we are here then we should be doing some type of error  */
+  
+  if (drop_ && flip_)
+    return(drop_and_flips(msg, len, packet_num));
+  
+  if (drop_)
+    {
+      if (debug_) printf("Packet %d: Dropped (did not send)\n", packet_num);
+      return(1);
+  }
+  
+  if (flip_)
+    return(flip_a_byte(msg, len, packet_num));
+  
+  printf("hmm should not have gotten here!!!\n");
+  return 0;
       }
 }
 
@@ -205,8 +205,8 @@ static int drop_and_flips(unsigned char * msg, int len, unsigned int packet_num)
     {
     case 0:
       /* drop the packet */
-	if (debug_) printf("Packet %d: Dropped (did not send)\n", packet_num);
-	return 1;	
+  if (debug_) printf("Packet %d: Dropped (did not send)\n", packet_num);
+  return 1; 
       break;
 
     case 1:

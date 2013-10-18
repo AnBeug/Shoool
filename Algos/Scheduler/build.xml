@@ -1,0 +1,33 @@
+<!--
+ This file can be used to compile and run the Scheduler tester.
+ Template from http://ant.apache.org/manual/using.html. 
+//-->
+<project name="Scheduler" default="compile" basedir=".">
+    <description>
+        Build and run the Scheduler tester.
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src/edu/calpoly/csc349/Schedule"/>
+  <property name="build" location="build"/>
+  
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
+
+  <target name="run" depends="compile">
+    <java classname="edu.calpoly.csc349.Schedule.ScheduleTester">
+      <classpath>
+        <pathelement location="${build}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+  </target>
+</project>
